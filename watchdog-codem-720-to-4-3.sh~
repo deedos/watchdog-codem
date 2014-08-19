@@ -2,33 +2,24 @@
 
 # Script created by Daniel Roviriego
 
-: '
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-'
-
 
 HOME=/media/dados/a-converter # Folder to Watch for files
-DESTDIR=/media/dados/convertidos # Folder for copying converted files to
+DESTDIR=/media/dados/convertidos
 CODEM_PATH=/opt/codem-scheduler/codem-scheduler/bin
-FFPROBE=/usr/local/lib/node_modules/codem-transcoder/embedded/bin/ffprobe # ffprobe path
+FFPROBE=/usr/local/lib/node_modules/codem-transcoder/embedded/bin/ffprobe
+
+#MD_720_480=/media/dados/igarape/MarcaDagua_HD-1080-16-9.png # path to your overlay image
+#MD_1920_1080=
+#MD_640_360=
+#MD_640_480=
+#MD_320=/media/dados/md.png
 
 
 	# wait for a file to be fully created and trigger loops
 
 	inotifywait  --monitor  -e close_write -e moved_to --format="%w%f" $HOME | while read file; do
 
-        echo "O arquivo "$file" apareceu no diretório e vamos encodá-los e adicionar marcadágua"
+        echo "O arquivo "$file" apareceu no diretório e vamos encodá-los"
 
 	# fix file named with spaces 
 
@@ -67,15 +58,25 @@ FFPROBE=/usr/local/lib/node_modules/codem-transcoder/embedded/bin/ffprobe # ffpr
       
         
 	else 
-	echo "O vídeo não corresponde a nenhuma resolução com marca dágua disponíveis, não posso fazer nada"
+	echo "O vídeo não corresponde a nenhuma resolução com marca dágua disponíveis"
 	
 	fi
 	done
 
 
 
+# resolver codem sem ser sudo
 
 
+
+## ffmpeg command
+#	/opt/codem-transcoder/embedded/bin/ffmpeg  -i  "$file"  -i  $MD_1920_1080  -filter_complex '[0:v][1]overlay=0:0[outv]' -map [outv]  -map 0:a -c:a aac -ab 192k -vcodec libx264 -vb 9000k -strict experimental $DESTDIR/"`basename "${file%.*}-converted"`".mp4 </dev/null ;
+
+## ffmpg scale and overlay working:   /usr/local/lib/node_modules/codem-transcoder/embedded/bin/ffmpeg -i /media/dados/a-converter/trecho720.mov -i /media/dados/marcadagua/MarcaDagua-640-480.png -filter_complex '[0:v]scale=640:480[scaled];[scaled][1:v]overlay=0:0[out]' -map [out] -map 0:a -acodec libfaac -ab 256k -vcodec libx264 -vb 5000k -f mp4 /media/dados/ttttt.mp4
+
+
+
+# preset do sucesso!!! igualzinho sem aspas  -i  /media/dados/marcadagua/MarcaDagua-640-480.png  -filter_complex [0:v]scale=640:480[scaled];[scaled]overlay=0:0[out] -map [out] -map 0:a -acodec libfaac -ab 256k -vcodec libx264 -vb 5000k
 
 
 
