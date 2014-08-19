@@ -6,7 +6,7 @@ Os "jobs" também aplicam marcadágua aos vídeos, então o script também detec
 
 O script depende do codem-scheduler logicamente,  ffmpeg (ffprobe) e inotify-tools (ubuntu/Debian)
 
-A documentação referente a instalação e uso que complementam os docs oficiais daqui http://transcodem.com/documentation/, assim como configurações específicas estão  [em doc a parte](Docs.md)
+A documentação referente a instalação e uso que complementam os docs oficiais daqui http://transcodem.com/documentation/, assim como configurações específicas estão  [em doc a parte](https://github.com/deedos/watchdog-codem/Docs.md)
 
 
 * * *
@@ -18,4 +18,4 @@ The codem jobs are also for watermarking videos, so the script detect the right 
 
 It depends on codem-scheduler, ffmpeg (ffprobe) and inotify-tools (ubuntu/Debian)
 
-The instructions that extends the official docs from here http://transcodem.com/documentation/ as well and specific deploying for [my specific use case are here](Docs.md) but unfortunately only in portuguese.
+The instructions that extends the official docs from here http://transcodem.com/documentation/ as well and specific deploying for [my specific use case are here](https://github.com/deedos/watchdog-codem/Docs.md) but unfortunately only in portuguese
