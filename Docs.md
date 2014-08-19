@@ -1,4 +1,4 @@
-** Instalar S.O, Codem e Scheduler **
+**Instalar S.O, Codem e Scheduler**
 
 Instalar Ubuntu 12.04 
 
