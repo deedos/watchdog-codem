@@ -1,9 +1,0 @@
-**Watchdog-codem**
-
-Simple bash script using inotifywait for creating jobs in codem-scheduler. It creates jobs as soon as  new files in a given folder are written
-
-To use it, simply set your Monitoring and destination folders in the script, change ffmpeg to your needs and run:
-
-    ./conversor.sh
-
-It depends on d and codec libraries and inotify-tools (ubuntu/Debian)
